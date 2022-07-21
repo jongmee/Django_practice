@@ -1,0 +1,27 @@
+<form action="" method="POST">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input type="submit" value="메뉴 예약하기">
+    <a href="{% url 'home' %}">
+        <p>홈으로 돌아가기</p>
+    </a>
+</form>
+
+<hr>
+
+<!-- 리뷰 작성 -->
+<form action="{% url 'menu_review' menu.id %}" method="POST">
+    {% csrf_token %}
+    {{ form_review.as_table }}
+    <input type="submit" value="리뷰 등록">
+</form>
+
+<hr>
+<br>
+리뷰 목록 <br><br>
+{% for review in reviews %}
+{{ review.writer }}:{{ review.body }}
+<br><br>
+{% endfor %}
